@@ -1,0 +1,3 @@
+[submodule "blog-posts"]
+	path = blog-posts
+	url = git@github.com:thinc5/blog-posts.git

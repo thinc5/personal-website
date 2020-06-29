@@ -10,14 +10,10 @@ export default function Home() {
 
       <main>
         <h1 className="title">
-          <a>Welcome to Thomas Hinchliff's personal website</a>
+          Welcome to Tom's personal website!
         </h1>
 
-      </main>
-
-      <footer>
-        A footer
-      </footer>    
+      </main>  
     </div>
   )
 }
