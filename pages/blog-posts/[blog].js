@@ -27,8 +27,9 @@ export const BlogPost = ({ metadata, html }) => {
 export const getStaticPaths = async () => {
   // Read all the blog posts in the blog-posts directory.
   let files = fs.readdirSync("blog-posts");
+  // Filter out hidden files and files that don't end with ".md".
   files = files.filter((filename) => {
-    return filename[0] !== ".";
+    return filename[0] !== "." && filename.substr(filename.length, 3) == ".md";
   });
   const paths = files.map((filename) => {
     return {
