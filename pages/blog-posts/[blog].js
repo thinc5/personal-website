@@ -2,9 +2,10 @@ import fs from "fs";
 import path from "path";
 
 import Head from "next/head";
-import Link from "next/link";
 import marked from "marked";
 import matter from "gray-matter";
+
+import { HomeButton } from "../../components/home-button";
 
 export const BlogPost = ({ metadata, html }) => {
   return (
@@ -13,12 +14,15 @@ export const BlogPost = ({ metadata, html }) => {
         <title>{metadata.title}</title>
         <meta title="description" content={metadata.description} />
       </Head>
+      <h2>{metadata.title}</h2>
+      <p>Created: {metadata["creation-date"]}</p>
+      <p>
+        {metadata["creation-date"] !== metadata["edit-date"]
+          ? "Edited: " + metadata["edit-date"]
+          : ""}
+      </p>
       <div dangerouslySetInnerHTML={{ __html: html }} />
-      <footer>
-        <Link key={"home"} href="/" as={"/"}>
-          <a>{"<- Home"}</a>
-        </Link>
-      </footer>
+      <HomeButton />
     </>
   );
 };
@@ -29,8 +33,11 @@ export const getStaticPaths = async () => {
   let files = fs.readdirSync("blog-posts");
   // Filter out hidden files and files that don't end with ".md".
   files = files.filter((filename) => {
-    return filename[0] !== "." && filename.substr(filename.length, 3) == ".md";
+    return (
+      filename[0] !== "." && filename.substr(filename.length - 3, 3) === ".md"
+    );
   });
+
   const paths = files.map((filename) => {
     return {
       params: {
@@ -38,6 +45,7 @@ export const getStaticPaths = async () => {
       },
     };
   });
+
   return {
     paths,
     fallback: false,
@@ -47,13 +55,14 @@ export const getStaticPaths = async () => {
 // Get all of the data to be rendered in the blog posts.
 export const getStaticProps = async ({ params: { blog } }) => {
   const filepath = path.join("blog-posts", blog + ".md");
-  const fileMetaData = fs.statSync(filepath);
-  console.log(fileMetaData.ctime);
   const rawPost = fs.readFileSync(filepath, "utf-8");
+
   // Parse metadata.
   const parsedMarkdown = matter(rawPost);
+
   // Parse markdown and generate html.
   const html = marked(parsedMarkdown.content);
+
   return {
     props: {
       metadata: parsedMarkdown.data,
