@@ -5,7 +5,8 @@ import Head from "next/head";
 import Link from "next/link";
 
 import matter from "gray-matter";
-import { Fragment } from "react";
+
+import { PortraitFrame } from "../components/portrait-frame";
 
 export default function Home({ blogPosts }) {
   return (
@@ -16,6 +17,7 @@ export default function Home({ blogPosts }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
+        <PortraitFrame />
         <h1 className="title">Welcome to Tom's personal website!</h1>
         <br />
         <Link key={"resume"} href="/resume">

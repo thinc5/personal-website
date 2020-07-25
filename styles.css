@@ -4,3 +4,9 @@ body {
   max-width: 680px;
   margin: 0 auto;
 }
+
+#circle_frame {
+  background-color: #ccc;
+  padding: 20px;
+  border-radius: 400/ 2;
+}
