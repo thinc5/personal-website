@@ -1,12 +1,35 @@
 body {
   font-family: "Noto Sans", "Noto Sans CJK JP", sans-serif;
-  padding: 20px 20px 60px;
-  max-width: 680px;
-  margin: 0 auto;
 }
 
-#circle_frame {
-  background-color: #ccc;
-  padding: 20px;
-  border-radius: 400/ 2;
+header {
+  padding: 3%;
+  /* margin: 0 auto; */
+}
+
+nav {
+  display: inline-block;
+  width: 100%;
+  justify-content: left;
+  align-items: center;
+}
+
+nav a {
+  padding: 2%;
+}
+
+.rounded {
+  border-radius: 50%;
+  width: 15%;
+}
+
+main {
+  max-width: 60%;
+  margin: 0 auto;
+  height: 100%;
+}
+
+footer {
+  width: 100%;
+  text-align: center;
 }

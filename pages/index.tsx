@@ -6,9 +6,10 @@ import Link from "next/link";
 
 import matter from "gray-matter";
 
-import { PortraitFrame } from "../components/portrait-frame";
+import { Footer } from "../components/Footer";
+import { HeaderLinks } from "../components/HeaderLinks";
 
-export default function Home({ blogPosts }) {
+export default function Home({ blogPosts, buildDate }) {
   return (
     <>
       <Head>
@@ -16,13 +17,11 @@ export default function Home({ blogPosts }) {
         <meta property="og:title" content="Page Title" key="title" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <header>
+        <HeaderLinks />
+      </header>
       <main>
-        <PortraitFrame />
-        <h1 className="title">Welcome to Tom's personal website!</h1>
-        <br />
-        <Link key={"resume"} href="/resume">
-          <a>Resume</a>
-        </Link>
+        <h1 className="title">thinc5.xyz</h1>
         <br />
         <h3>Posts</h3>
         {blogPosts.map((post) => {
@@ -40,6 +39,7 @@ export default function Home({ blogPosts }) {
           );
         })}
       </main>
+      <Footer build_date={buildDate}/>
     </>
   );
 }
@@ -71,9 +71,13 @@ export const getStaticProps = async () => {
       return a < b ? 1 : -1;
     });
 
+  const date = new Date();
+  const formattedDate = `${JSON.stringify(date)}`;
+
   return {
     props: {
       blogPosts: blogPosts,
+      buildDate: formattedDate
     },
   };
 };

@@ -1,4 +1,4 @@
-import { HomeButton } from "../components/home-button";
+import { HomeButton } from "../components/HomeButton";
 
 export default function Resume() {
   return (
