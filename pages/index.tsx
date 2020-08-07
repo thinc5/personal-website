@@ -8,6 +8,7 @@ import matter from "gray-matter";
 
 import { Footer } from "../components/Footer";
 import { HeaderLinks } from "../components/HeaderLinks";
+import { Fragment } from "react";
 
 export default function Home({ blogPosts, buildDate }) {
   return (
@@ -23,17 +24,19 @@ export default function Home({ blogPosts, buildDate }) {
       <main>
         <h1 className="title">thinc5.xyz</h1>
         <br />
-        <h3>Posts</h3>
-        {blogPosts.map((post) => {
-          return (
-            <>
-              <Link href="/blog-posts/[blog]" as={"/blog-posts/" + post.path}>
-                <a>{post.name}</a>
-              </Link>
-              <br />
-            </>
-          );
-        })}
+        <div>
+          <h3>Posts</h3>
+          {blogPosts.map((post) => {
+            return (
+              <Fragment key={post.path}>
+                <Link href="/blog-posts/[blog]" as={"/blog-posts/" + post.path}>
+                  <a>{post.name}</a>
+                </Link>
+                <br />
+              </Fragment>
+            );
+          })}
+        </div>
       </main>
       <Footer build_date={buildDate} />
     </>
