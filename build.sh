@@ -1,1 +1,1 @@
-docker run -u "$(id -u):$(id -g)" -w="/app" -v ${PWD}:/app node:12.18-alpine sh -c "npm i --production && npm run build && npm run export"
+docker run -u "$(id -u):$(id -g)" -w="/app" -v ${PWD}:/app node:12.18-alpine sh -c "npm install --save-dev typescript @types/react @types/node && npm i --production && npm run build && npm run export"
