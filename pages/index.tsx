@@ -27,11 +27,7 @@ export default function Home({ blogPosts, buildDate }) {
         {blogPosts.map((post) => {
           return (
             <>
-              <Link
-                key={post.path}
-                href="/blog-posts/[blog]"
-                as={"/blog-posts/" + post.path}
-              >
+              <Link href="/blog-posts/[blog]" as={"/blog-posts/" + post.path}>
                 <a>{post.name}</a>
               </Link>
               <br />
@@ -39,7 +35,7 @@ export default function Home({ blogPosts, buildDate }) {
           );
         })}
       </main>
-      <Footer build_date={buildDate}/>
+      <Footer build_date={buildDate} />
     </>
   );
 }
@@ -77,7 +73,7 @@ export const getStaticProps = async () => {
   return {
     props: {
       blogPosts: blogPosts,
-      buildDate: formattedDate
+      buildDate: formattedDate,
     },
   };
 };
