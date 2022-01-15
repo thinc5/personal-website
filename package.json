@@ -11,7 +11,7 @@
   "dependencies": {
     "eslint": "^7.3.1",
     "gray-matter": "^4.0.2",
-    "marked": "^1.1.0",
+    "marked": "^4.0.10",
     "next": "9.4.4",
     "react": "16.13.1",
     "react-dom": "16.13.1"
